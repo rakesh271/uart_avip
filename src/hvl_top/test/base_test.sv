@@ -26,8 +26,6 @@ class base_test extends uvm_test;
   extern virtual function void setup_master_agent_cfg();
   extern virtual function void setup_slave_agents_cfg();
   extern virtual function void end_of_elaboration_phase(uvm_phase phase);
-  extern virtual function void start_of_simulation_phase(uvm_phase phase);
-  extern virtual task run_phase(uvm_phase phase);
 
 endclass : base_test
 
@@ -108,11 +106,10 @@ function void base_test::setup_slave_agents_cfg();
 
     e_cfg_h.sa_cfg_h = slave_agent_config::type_id::create("sa_cfg_h",this);
 
-    e_cfg_h.sa_cfg_h[i].is_active    = uvm_active_passive_enum'(UVM_ACTIVE);
+    e_cfg_h.sa_cfg_h.is_active    = uvm_active_passive_enum'(UVM_ACTIVE);
 
     uvm_config_db #(slave_agent_config)::set(this,("*slave_agent_h*"),
                                              "slave_agent_config", e_cfg_h.sa_cfg_h);
-  end
 
 endfunction: setup_slave_agents_cfg
 

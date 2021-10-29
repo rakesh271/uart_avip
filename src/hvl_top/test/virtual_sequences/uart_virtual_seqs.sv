@@ -5,7 +5,7 @@
 // Class: uart_virtual_seqs
 // <Description_here>
 //--------------------------------------------------------------------------------------------
-class uart_virtual_seqs  extends uart_virtual_seq_base;
+class uart_virtual_seqs extends uart_virtual_seq_base;
 
   //register with factory so can use create uvm_method and
   //override in future if necessary 

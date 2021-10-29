@@ -23,7 +23,8 @@ class env extends uvm_env;
   // Declaring slave handles
   //-------------------------------------------------------
   slave_agent slave_agent_h;
-
+ 
+  virtual_sequencer v_sqr_h;
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -66,7 +67,6 @@ function void env::build_phase(uvm_phase phase);
 
   ma_h=master_agent::type_id::create("master_agent",this);
   slave_agent_h = slave_agent::type_id::create("slave_agent_h",this);
-  end
 
   if(e_cfg_h.has_virtual_sqr) begin
     v_sqr_h = virtual_sequencer::type_id::create("v_sqr_h",this);

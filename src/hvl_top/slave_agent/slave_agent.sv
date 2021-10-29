@@ -45,7 +45,7 @@ endclass : slave_agent
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function slave_agent::new(string name = "slave_agent",
-                               uvm_component parent);
+                               uvm_component parent=null);
   super.new(name, parent);
 endfunction : new
 
@@ -62,10 +62,6 @@ function void slave_agent::build_phase(uvm_phase phase);
   if(!uvm_config_db #(slave_agent_config)::get(this,"","slave_agent_config",sa_cfg_h)) begin
    `uvm_fatal("FATAL_SA_AGENT_CONFIG", $sformatf("Couldn't get the slave_agent_config from config_db"))
   end
-
-  // TODO(mshariff): Print the values of the slave_agent_config
-  // Have a print method in master_agent_config class and call it from here
-  `uvm_info(get_type_name(), $sformatf("The slave_agent_config.slave_id = %0d", sa_cfg_h.slave_id), UVM_LOW);
 
    if(sa_cfg_h.is_active == UVM_ACTIVE) begin
      sdrv_proxy_h = slave_driver_proxy::type_id::create("sdrv_proxy_h",this);
@@ -85,11 +81,6 @@ endfunction : build_phase
 function void slave_agent::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
 
-  if(sa_cfg_h.is_active == UVM_ACTIVE) begin
-    sdrv_proxy_h.sa_cfg_h = sa_cfg_h;
-    s_sqr_h.sa_cfg_h = sa_cfg_h;
-  end
-  smon_proxy_h.sa_cfg_h = sa_cfg_h;
 
   //sdrv_proxy_h.seq_item_port.connect(s_sqr_h.seq_item_export);
 endfunction : connect_phase

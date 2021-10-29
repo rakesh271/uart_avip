@@ -2,9 +2,9 @@
 // master driver BFM
 //-------------------------------------------------------
 
-module master_drv(spi_if intf);
+module master_drv(uart_if intf);
 
-virtual spi_if vif;
+virtual uart_if vif;
 
 initial 
   begin

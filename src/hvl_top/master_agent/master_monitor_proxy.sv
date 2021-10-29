@@ -74,7 +74,7 @@ endfunction : build_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void master_monitor_proxy::connect_phase(uvm_phase phase);
-      vif = m_cfg.vif;
+      //vif = m_cfg.vif;
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------

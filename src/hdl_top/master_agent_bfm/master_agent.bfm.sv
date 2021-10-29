@@ -1,7 +1,7 @@
  `include "master_drv.sv"
  `include "master_mon.sv"
 
-  module master_agent_bfm(spi_if intf);
+  module master_agent_bfm(uart_if intf);
 
    initial
    begin

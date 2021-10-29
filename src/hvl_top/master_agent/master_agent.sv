@@ -11,11 +11,9 @@ class master_agent extends uvm_agent;
   // Variable: m_cfg
   // Declaring handle for master agent config class 
   master_agent_config m_cfg;
-
-
-    master_sequencer m_sqr_h;
-    master_driver_proxy m_drv_h;
-    master_monitor_proxy m_mon_h;
+  master_sequencer m_sqr_h;
+  master_driver_proxy m_drv_h;
+  master_monitor_proxy m_mon_h;
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------

@@ -1,35 +1,39 @@
-`ifndef SLAVE_SEQUENCE_INCLUDED_
-`define SLAVE_SEQUENCE_INCLUDED_
+//--------------------------------------------------------------------------------------------
+// Class: seq extended from base class
+//--------------------------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------
-// Class: slave_sequence
-// Class Description:
-// slave_sequence is extended from uvm_sequence to create sequence items
-//--------------------------------------------------------------------------------------------
-class slave_sequence extends uvm_sequence #(slave_tx);
+class slave_sequence_1 extends slave_sequence;
 
   //-------------------------------------------------------
   // Factory Registration is done to override the object
   //-------------------------------------------------------
-  `uvm_object_utils(slave_sequence)
+  `uvm_object_utils(slave_sequence_1)
 
   //-------------------------------------------------------
-  // Externally defined Tasks and Functions
+  // Externally defined tasks and functions
   //-------------------------------------------------------
-  extern function new(string name = "slave_sequence");
+  extern function new(string name = "slave_sequence_1");
+  extern virtual task body();
 
-endclass : slave_sequence
+endclass : slave_sequence_1
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
-//  Initializes new memory for slave_sequence
+// Initializes sseq1 class object 
 //
 // Parameters:
-//  name - slave_sequence
+//  name - sseq1
 //--------------------------------------------------------------------------------------------
-function slave_sequence::new(string name = "slave_sequence");
+function slave_sequence_1::new(string name = "slave_sequence_1");
   super.new(name);
 endfunction : new
 
-`endif
+//-------------------------------------------------------
+// task:body
+//  To create request which is comes from driver
+//-------------------------------------------------------
+
+task slave_sequence_1::body();
+
+endtask : body
 

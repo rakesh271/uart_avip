@@ -20,7 +20,8 @@ package uart_virtual_seq_pkg;
   //-------------------------------------------------------
   // Include all other files
   //-------------------------------------------------------
-  `include "uart_fd_vseq_base.sv"
+
+  `include "uart_virtual_seq_base.sv"
   `include "uart_virtual_seqs.sv"
   
 endpackage : uart_virtual_seq_pkg

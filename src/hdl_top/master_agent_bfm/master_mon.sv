@@ -1,7 +1,7 @@
 //-------------------------------------------------------
 //master monitor
 //-------------------------------------------------------
-module master_mon(spi_intf);
+module master_mon(uart_intf);
 
   initial
   begin
