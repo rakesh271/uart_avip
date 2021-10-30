@@ -8,7 +8,7 @@ compile:
 	+incdir+../../src/globals/ \
 	+incdir+../../src/hvl_top/master_agent/ \
 	+incdir+../../src/hdl_top/master_agent_bfm/  \
-  +incdir+../../src/hvl_top/test/virtual_sequences/ \
+        +incdir+../../src/hvl_top/test/virtual_sequences/ \
 	+incdir+../../src/hvl_top/env \
 	+incdir+../../src/hvl_top/slave_agent \
 	+incdir+../../src/hvl_top/test \
