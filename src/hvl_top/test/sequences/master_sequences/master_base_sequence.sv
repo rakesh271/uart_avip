@@ -5,7 +5,7 @@
 // <Description_here>
 //--------------------------------------------------------------------------------------------
 class master_base_sequence extends uvm_sequence #(master_tx);
-  //register with factory so we can ovverride using uvm methos in future.
+  //register with factory so we can ovverride using uvm methods in future.
 
   `uvm_object_utils(master_base_sequence)
   //-------------------------------------------------------
