@@ -10,14 +10,14 @@ class uart_virtual_seq_base extends uvm_sequence#(uvm_sequence_item);
   `uvm_object_utils(uart_virtual_seq_base)
 
   //declaring virtual sequencer handle
-  virtual_sequencer  v_sqr_h;
+  virtual_sequencer  virtual_seqr_h;
 
   //--------------------------------------------------------------------------------------------
   // declaring handles for master and slave sequencer and environment config
   //--------------------------------------------------------------------------------------------
-  master_sequencer  m_sqr_h;
-  slave_sequencer   s_sqr_h;
-  env_config e_cfg_h;
+  master_sequencer  master_seqr_h;
+  slave_sequencer   slave_seqr_h;
+  env_config env_cfg_h;
 
   //--------------------------------------------------------------------------------------------
   // Externally defined tasks and functions
@@ -47,19 +47,19 @@ endfunction:new
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
 task uart_virtual_seq_base::body();
-  if(!uvm_config_db#(env_config) ::get(null,get_full_name(),"env_config",e_cfg_h)) begin
+  if(!uvm_config_db#(env_config) ::get(null,get_full_name(),"env_config",env_cfg_h)) begin
     `uvm_fatal("CONFIG","cannot get() e_cfg from uvm_config_db.Have you set() it?")
   end
 
-  if(!$cast(v_sqr_h,m_sequencer))begin
+  if(!$cast(virtual_seqr_h,master_seqr_h))begin
       `uvm_error(get_full_name(),"Virtual sequencer pointer cast failed")
      end
             
   //connecting master sequenver and slave sequencer in env to
   //master sequencer and slave sequencer in virtual sequencer
 
-  m_sqr_h=v_sqr_h.m_sqr_h;
-  s_sqr_h=v_sqr_h.s_sqr_h;
+  master_seqr_h=virtual_seqr_h.master_seqr_h;
+  slave_seqr_h=virtual_seqr_h.slave_seqr_h;
 
 endtask:body
 `endif

@@ -22,7 +22,6 @@ package uart_slave_pkg;
   `include "slave_tx.sv"
   `include "slave_agent_config.sv"
   `include "slave_sequencer.sv"
-  `include "slave_sequence.sv"
   `include "slave_driver_proxy.sv"
   `include "slave_monitor_proxy.sv"
   `include "slave_agent.sv"

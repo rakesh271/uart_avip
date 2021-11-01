@@ -1,3 +1,7 @@
+`ifndef TEST_PKG_INCLUDED_
+`define TEST_PKG_INCLUDED_
+
+
 //--------------------------------------------------------------------------------------------
 // Package: Test
 // Description:
@@ -25,3 +29,5 @@ package test_pkg;
   `include "base_test.sv"
 
 endpackage :test_pkg
+
+`endif

@@ -10,19 +10,19 @@ class slave_agent extends uvm_agent;
 
   // Variable: sa_cfg_h;
   // Handle for slave agent configuration
-  slave_agent_config sa_cfg_h;
+  slave_agent_config slave_agent_cfg_h;
 
   // Variable: s_sqr_h;
   // Handle for slave sequencer
-  slave_sequencer s_sqr_h;
+  slave_sequencer slave_seqr_h;
 
   // Variable: sdrv_proxy_h
   // Handle for slave driver proxy
-  slave_driver_proxy sdrv_proxy_h;
+  slave_driver_proxy slave_drv_proxy_h;
 
   // Variable: smon_proxy_h
   // Handle for slave monitor proxy
-  slave_monitor_proxy smon_proxy_h;
+  slave_monitor_proxy slave_mon_proxy_h;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -59,16 +59,16 @@ endfunction : new
 function void slave_agent::build_phase(uvm_phase phase);
   super.build_phase(phase);
 
-  if(!uvm_config_db #(slave_agent_config)::get(this,"","slave_agent_config",sa_cfg_h)) begin
+  if(!uvm_config_db #(slave_agent_config)::get(this,"","slave_agent_config",slave_agent_cfg_h)) begin
    `uvm_fatal("FATAL_SA_AGENT_CONFIG", $sformatf("Couldn't get the slave_agent_config from config_db"))
   end
 
-   if(sa_cfg_h.is_active == UVM_ACTIVE) begin
-     sdrv_proxy_h = slave_driver_proxy::type_id::create("sdrv_proxy_h",this);
-     s_sqr_h=slave_sequencer::type_id::create("s_sqr_h",this);
+   if(slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
+     slave_drv_proxy_h = slave_driver_proxy::type_id::create("slave_drv_proxy_h",this);
+     slave_seqr_h=slave_sequencer::type_id::create("slave_seqr_h",this);
    end
 
-   smon_proxy_h = slave_monitor_proxy::type_id::create("smon_proxy_h",this);
+   slave_mon_proxy_h = slave_monitor_proxy::type_id::create("slave_mon_proxy_h",this);
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ function void slave_agent::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
 
 
-  //sdrv_proxy_h.seq_item_port.connect(s_sqr_h.seq_item_export);
+  //slave_drv_proxy_h.seq_item_port.connect(slave_seqr_h.seq_item_export);
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------

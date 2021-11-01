@@ -11,7 +11,7 @@ class base_test extends uvm_test;
 
    // Variable: e_cfg_h
    // Declaring environment config handle
-   env_config e_cfg_h;
+   env_config env_cfg_h;
 
    // Variable: env_h
    // Handle for environment 
@@ -66,10 +66,10 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void base_test:: setup_env_cfg();
 
-  e_cfg_h = env_config::type_id::create("e_cfg_h");
+  env_cfg_h = env_config::type_id::create("env_cfg_h");
  
-  e_cfg_h.has_scoreboard = 1;
-  e_cfg_h.has_virtual_sqr = 1;
+  env_cfg_h.has_scoreboard = 1;
+  env_cfg_h.has_virtual_sqr = 1;
   
   // Setup the master agent cfg 
   setup_master_agent_cfg();
@@ -77,7 +77,7 @@ function void base_test:: setup_env_cfg();
   // Setup the slave agent(s) cfg 
   setup_slave_agents_cfg();
 
-  uvm_config_db #(env_config)::set(this,"*","env_config",e_cfg_h);
+  uvm_config_db #(env_config)::set(this,"*","env_config",env_cfg_h);
 
 endfunction: setup_env_cfg
 
@@ -88,12 +88,12 @@ endfunction: setup_env_cfg
 //--------------------------------------------------------------------------------------------
 function void base_test::setup_master_agent_cfg();
 
-  e_cfg_h.ma_cfg_h = master_agent_config::type_id::create("ma_cfg_h");
+  env_cfg_h.master_agent_cfg_h = master_agent_config::type_id::create("master_agent_cfg_h");
 
   // Configure the Master agent configuration
-  e_cfg_h.ma_cfg_h.is_active            = uvm_active_passive_enum'(UVM_ACTIVE);
+  env_cfg_h.master_agent_cfg_h.is_active            = uvm_active_passive_enum'(UVM_ACTIVE);
 
-  uvm_config_db #(master_agent_config)::set(this,"*master_agent*","master_agent_config",e_cfg_h.ma_cfg_h);
+  uvm_config_db #(master_agent_config)::set(this,"*master_agent*","master_agent_config",env_cfg_h.master_agent_cfg_h);
 
 endfunction: setup_master_agent_cfg
 
@@ -104,12 +104,12 @@ endfunction: setup_master_agent_cfg
 //--------------------------------------------------------------------------------------------
 function void base_test::setup_slave_agents_cfg();
 
-    e_cfg_h.sa_cfg_h = slave_agent_config::type_id::create("sa_cfg_h",this);
+    env_cfg_h.slave_agent_cfg_h = slave_agent_config::type_id::create("slave_agent_cfg_h",this);
 
-    e_cfg_h.sa_cfg_h.is_active    = uvm_active_passive_enum'(UVM_ACTIVE);
+    env_cfg_h.slave_agent_cfg_h.is_active    = uvm_active_passive_enum'(UVM_ACTIVE);
 
     uvm_config_db #(slave_agent_config)::set(this,("*slave_agent_h*"),
-                                             "slave_agent_config", e_cfg_h.sa_cfg_h);
+                                             "slave_agent_config", env_cfg_h.slave_agent_cfg_h);
 
 endfunction: setup_slave_agents_cfg
 

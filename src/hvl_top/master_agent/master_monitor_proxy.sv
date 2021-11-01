@@ -18,7 +18,7 @@ class master_monitor_proxy extends uvm_component;
   
   // Variable: m_cfg
   // Declaring handle for master agent config class 
-  master_agent_config m_cfg;
+  master_agent_config master_agent_cfg_h;
 
   //declaring analysis port for the monitor port
   //uvm_analysis_port #(master_tx)monitor_port;
@@ -74,7 +74,7 @@ endfunction : build_phase
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void master_monitor_proxy::connect_phase(uvm_phase phase);
-      //vif = m_cfg.vif;
+      //vif = master_agent_cfg.vif;
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------

@@ -1,0 +1,35 @@
+QuestaSim vlog 10.6c Compiler 2017.07 Jul 25 2017
+Start time: 23:13:33 on Nov 01,2021
+vlog -sv "+acc" -l uart_compile.log -f ../uart_compile.f 
+-- Compiling package uart_globals_pkg
+-- Compiling package uart_master_pkg
+** Note: (vlog-2286) ../../src/hvl_top/master_agent/uart_master_pkg.sv(12): Using implicit +incdir+/tools/mentor/questasim_10.6c/questasim/uvm-1.1d/../verilog_src/uvm-1.1d/src from import uvm_pkg
+-- Importing package mtiUvm.uvm_pkg (uvm-1.1d Built-in)
+-- Importing package uart_globals_pkg
+-- Compiling package uart_slave_pkg
+-- Compiling package master_uart_seq_pkg
+-- Importing package uart_master_pkg
+-- Compiling package slave_uart_seq_pkg
+-- Importing package uart_slave_pkg
+-- Compiling package uart_env_pkg
+-- Compiling package uart_virtual_seq_pkg
+-- Importing package uart_env_pkg
+-- Compiling package test_pkg
+-- Compiling interface uart_if
+-- Compiling module master_driver_bfm
+-- Compiling module master_monitor_bfm
+-- Compiling module master_agent_bfm
+-- Compiling interface slave_driver_bfm
+-- Compiling module slave_monitor_bfm
+-- Compiling module slave_agent_bfm
+-- Compiling module hdl_top
+-- Compiling module hvl_top
+-- Importing package test_pkg
+
+Top level modules:
+	master_agent_bfm
+	slave_monitor_bfm
+	hdl_top
+	hvl_top
+End time: 23:13:34 on Nov 01,2021, Elapsed time: 0:00:01
+Errors: 0, Warnings: 0

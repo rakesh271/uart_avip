@@ -24,7 +24,8 @@ package uart_env_pkg;
   // Include all other files
   //-------------------------------------------------------
   `include "env_config.sv"
-
+  `include "uart_scoreboard.sv"
+  `include "coverage.sv"
   `include "virtual_sequencer.sv"
 
   // SCOREBOARD

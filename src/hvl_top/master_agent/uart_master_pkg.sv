@@ -6,7 +6,6 @@
 //  Includes all the files related to UART master
 //--------------------------------------------------------------------------------------------
 package uart_master_pkg;
-
   //-------------------------------------------------------
   // Import uvm package
   //-------------------------------------------------------
@@ -15,14 +14,12 @@ package uart_master_pkg;
  
   // Import uart_globals_pkg 
   import uart_globals_pkg::*;
-
   //-------------------------------------------------------
   // Include all other files
   //-------------------------------------------------------
   `include "master_tx.sv"
   `include "master_agent_config.sv"
   `include "master_sequencer.sv"
-  `include "master_sequence.sv"
   `include "master_driver_proxy.sv"
   `include "master_monitor_proxy.sv"
   `include "master_agent.sv"

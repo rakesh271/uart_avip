@@ -12,7 +12,7 @@ class slave_monitor_proxy extends uvm_monitor;
 
   // Variable: sa_cfg_h;
   // Handle for slave agent configuration
-  slave_agent_config sa_cfg_h;
+  slave_agent_config slave_agent_cfg_h;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
