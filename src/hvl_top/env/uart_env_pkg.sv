@@ -21,16 +21,12 @@ package uart_env_pkg;
   import uart_slave_pkg::*;
 
   //-------------------------------------------------------
-  // Include all other files
+  // Include all env related files
   //-------------------------------------------------------
   `include "env_config.sv"
   `include "uart_scoreboard.sv"
   `include "coverage.sv"
   `include "virtual_sequencer.sv"
-
-  // SCOREBOARD
-  // Coverage 
-
   `include "env.sv"
 
 endpackage : uart_env_pkg

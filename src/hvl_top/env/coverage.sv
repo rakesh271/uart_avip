@@ -30,7 +30,6 @@ endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// Builds the analysis import
 //
 // Parameters:
 //  phase - uvm phase
@@ -41,7 +40,6 @@ endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
 // Task: run_phase
-// <Description_here>
 //
 // Parameters:
 //  phase - uvm phase
