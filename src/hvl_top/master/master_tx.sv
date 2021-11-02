@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: master_tx.
-// Description of the class.
+// Description:
 // This class holds the data items required to drive stimulus to dut
 // and also holds methods that manipulatethose data items
 //--------------------------------------------------------------------------------------------
@@ -36,17 +36,15 @@ endclass : master_tx
 // initializes the class object
 //
 // Parameters:
-//  name - master_tx
+// name - master_tx
 //--------------------------------------------------------------------------------------------
 function master_tx::new(string name = "master_tx");
   super.new(name);
 endfunction : new
 
-
 //--------------------------------------------------------------------------------------------
 // do_copy method
 //--------------------------------------------------------------------------------------------
-
 function void master_tx::do_copy (uvm_object rhs);
   master_tx rhs_;
   
@@ -73,6 +71,7 @@ function bit  master_tx::do_compare (uvm_object rhs,uvm_comparer comparer);
   return super.do_compare(rhs,comparer) &&
   tx == rhs_.tx &&
   rx == rhs_.rx;
+
 endfunction : do_compare
 
 //--------------------------------------------------------------------------------------------
