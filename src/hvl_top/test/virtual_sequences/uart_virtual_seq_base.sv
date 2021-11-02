@@ -2,7 +2,7 @@
 `define UART_VIRTUAL_SEQ_BASE_INCLUDED_
 
 //--------------------------------------------------------------------------------------------
-//Class:SPI Virtual sequence
+// Class:UART Virtual sequence
 // Description:
 // This class contains the handle of actual sequencer pointing towards them
 //--------------------------------------------------------------------------------------------
@@ -28,11 +28,11 @@ class uart_virtual_seq_base extends uvm_sequence#(uvm_sequence_item);
 endclass:uart_virtual_seq_base
 
 //--------------------------------------------------------------------------------------------
-//Constructor:new
+// Constructor:new
 //
-//Paramters:
-//name - Instance name of the virtual_sequence
-//parent - parent under which this component is created
+// Paramters:
+// name - Instance name of the virtual_sequence
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
   
 function uart_virtual_seq_base::new(string name="uart_virtual_seq_base");
@@ -40,10 +40,10 @@ function uart_virtual_seq_base::new(string name="uart_virtual_seq_base");
 endfunction:new
 
 //--------------------------------------------------------------------------------------------
-//task:body
-//Creates the required ports
+// task:body
+// Creates the required ports
 //
-//Parameters:
+// Parameters:
 // phase - stores the current phase
 //--------------------------------------------------------------------------------------------
 task uart_virtual_seq_base::body();
@@ -57,7 +57,6 @@ task uart_virtual_seq_base::body();
             
   //connecting master sequenver and slave sequencer in env to
   //master sequencer and slave sequencer in virtual sequencer
-
   master_seqr_h=virtual_seqr_h.master_seqr_h;
   slave_seqr_h=virtual_seqr_h.slave_seqr_h;
 
