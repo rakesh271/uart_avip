@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------------------
 // Package: uart_master_pkg
-//  Includes all the files related to UART master
+// Includes all the files related to UART master
 //--------------------------------------------------------------------------------------------
 package uart_master_pkg;
   //-------------------------------------------------------
@@ -14,6 +14,7 @@ package uart_master_pkg;
  
   // Import uart_globals_pkg 
   import uart_globals_pkg::*;
+
   //-------------------------------------------------------
   // Include all other files
   //-------------------------------------------------------

@@ -13,7 +13,7 @@ class slave_driver_proxy extends uvm_driver#(slave_tx);
   // Handle for slave driver bfm
   virtual slave_driver_bfm slave_drv_bfm_h;
 
-  // Variable: sa_cfg_h;
+  // Variable: slave_agent_cfg_h;
   // Handle for slave agent configuration
   slave_agent_config slave_agent_cfg_h;
 
@@ -33,8 +33,8 @@ endclass : slave_driver_proxy
 // Construct: new
 //
 // Parameters:
-//  name - slave_driver_proxy
-//  parent - parent under which this component is created
+// name - slave_driver_proxy
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function slave_driver_proxy::new(string name = "slave_driver_proxy",
                                  uvm_component parent = null);
@@ -43,10 +43,10 @@ endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// <Description_here>
+// Description_here:Slave_driver_bfm congiguration is obtained in build phase
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_driver_proxy::build_phase(uvm_phase phase);
   super.build_phase(phase);
@@ -57,10 +57,10 @@ endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
 // Function: connect_phase
-// <Description_here>
+// Description_here: Connects driver_proxy and driver_bfm
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_driver_proxy::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
@@ -71,7 +71,7 @@ endfunction : connect_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_driver_proxy::end_of_elaboration_phase(uvm_phase phase);
   super.end_of_elaboration_phase(phase);
@@ -82,7 +82,7 @@ endfunction  : end_of_elaboration_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_driver_proxy::start_of_simulation_phase(uvm_phase phase);
   super.start_of_simulation_phase(phase);
@@ -93,7 +93,7 @@ endfunction : start_of_simulation_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task slave_driver_proxy::run_phase(uvm_phase phase);
 

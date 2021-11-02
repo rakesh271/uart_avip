@@ -13,13 +13,14 @@ class uart_master_seq_item_converter extends uvm_object;
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
   extern function new(string name = "uart_master_seq_item_converter");
+
 endclass : uart_master_seq_item_converter
 
 //--------------------------------------------------------------------------------------------
 // Construct: new
 //
 // Parameters:
-//  name - uart_master_seq_item_converter
+// name - uart_master_seq_item_converter
 //--------------------------------------------------------------------------------------------
 function uart_master_seq_item_converter::new(string name = "uart_master_seq_item_converter");
   super.new(name);

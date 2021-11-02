@@ -19,6 +19,6 @@ interface slave_monitor_bfm (uart_if intf);
     $display("Slave Monitor BFM");
   end
 
-endinterface
+endinterface : slave_monitor_bfm 
 
 `endif

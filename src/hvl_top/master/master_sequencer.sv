@@ -30,8 +30,8 @@ endclass : master_sequencer
 // Construct: new
 //
 // Parameters:
-//  name - master_sequencer
-//  parent - parent under which this component is created
+// name - master_sequencer
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function master_sequencer::new(string name = "master_sequencer",
                                  uvm_component parent = null);

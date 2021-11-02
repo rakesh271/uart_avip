@@ -7,20 +7,20 @@
 //--------------------------------------------------------------------------------------------
 class slave_agent extends uvm_agent;
   `uvm_component_utils(slave_agent)
-
-  // Variable: sa_cfg_h;
+  
+  // Variable: slave_agent_cfg_h;
   // Handle for slave agent configuration
   slave_agent_config slave_agent_cfg_h;
 
-  // Variable: s_sqr_h;
+  // Variable: slave_seqr_h;
   // Handle for slave sequencer
   slave_sequencer slave_seqr_h;
 
-  // Variable: sdrv_proxy_h
+  // Variable: slave_drv_proxy_h
   // Handle for slave driver proxy
   slave_driver_proxy slave_drv_proxy_h;
 
-  // Variable: smon_proxy_h
+  // Variable: slave_mon_proxy_h
   // Handle for slave monitor proxy
   slave_monitor_proxy slave_mon_proxy_h;
 
@@ -44,8 +44,7 @@ endclass : slave_agent
 //  name - instance name of the  slave_agent
 //  parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
-function slave_agent::new(string name = "slave_agent",
-                               uvm_component parent=null);
+function slave_agent::new(string name = "slave_agent",uvm_component parent=null);
   super.new(name, parent);
 endfunction : new
 
@@ -62,27 +61,25 @@ function void slave_agent::build_phase(uvm_phase phase);
   if(!uvm_config_db #(slave_agent_config)::get(this,"","slave_agent_config",slave_agent_cfg_h)) begin
     `uvm_fatal("FATAL_SA_AGENT_CONFIG", $sformatf("Couldn't get the slave_agent_config from config_db"));
   end
+  if(slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
+    slave_drv_proxy_h = slave_driver_proxy::type_id::create("slave_drv_proxy_h",this);
+    slave_seqr_h=slave_sequencer::type_id::create("slave_seqr_h",this);
+  end
+  slave_mon_proxy_h = slave_monitor_proxy::type_id::create("slave_mon_proxy_h",this);
+  //coverage
 
-   if(slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
-     slave_drv_proxy_h = slave_driver_proxy::type_id::create("slave_drv_proxy_h",this);
-     slave_seqr_h=slave_sequencer::type_id::create("slave_seqr_h",this);
-   end
-
-   slave_mon_proxy_h = slave_monitor_proxy::type_id::create("slave_mon_proxy_h",this);
-
-   //coverage
 endfunction : build_phase
+
 
 //--------------------------------------------------------------------------------------------
 // Function: connect_phase
-// <Description_here>
+// Description: it connects the components using TLM ports
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_agent::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
-  
   if(slave_agent_cfg_h.is_active == UVM_ACTIVE) begin
     slave_drv_proxy_h.slave_agent_cfg_h = slave_agent_cfg_h;
     slave_seqr_h.slave_agent_cfg_h = slave_agent_cfg_h;
@@ -95,16 +92,16 @@ function void slave_agent::connect_phase(uvm_phase phase);
   
   slave_mon_proxy_h.slave_agent_cfg_h = slave_agent_cfg_h;
   
-
   //slave_drv_proxy_h.seq_item_port.connect(slave_seqr_h.seq_item_export);
+
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------
-// Function: end_of_elaboration_phase
+//Function: end_of_elaboration_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_agent::end_of_elaboration_phase(uvm_phase phase);
   super.end_of_elaboration_phase(phase);
@@ -115,7 +112,7 @@ endfunction  : end_of_elaboration_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_agent::start_of_simulation_phase(uvm_phase phase);
   super.start_of_simulation_phase(phase);
@@ -126,12 +123,12 @@ endfunction : start_of_simulation_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task slave_agent::run_phase(uvm_phase phase);
-
+  
   phase.raise_objection(this, "slave_agent");
-
+  
   super.run_phase(phase);
 
   // Work here

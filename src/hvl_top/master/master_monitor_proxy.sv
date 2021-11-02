@@ -3,11 +3,11 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: master_monitor_proxy
-// <Description of the class
-//Monitor is written by extending uvm_monitor,uvm_monitor is inherited from uvm_component, 
-//A monitor is a passive entity that samples the DUT signals through virtual interface and 
-//converts the signal level activity to transaction level,monitor samples DUT signals but does not drive them.
-//Monitor should have analysis port (TLM port) and virtual interface handle that points to DUT signal
+// Description:
+// Monitor is written by extending uvm_monitor,uvm_monitor is inherited from uvm_component, 
+// A monitor is a passive entity that samples the DUT signals through virtual interface and 
+// converts the signal level activity to transaction level,monitor samples DUT signals but does not drive them.
+// Monitor should have analysis port (TLM port) and virtual interface handle that points to DUT signal
 //--------------------------------------------------------------------------------------------
 class master_monitor_proxy extends uvm_component;
   
@@ -39,8 +39,8 @@ endclass : master_monitor_proxy
 // Construct: new
 //
 // Parameters:
-//  name - master_monitor_proxy
-//  parent - parent under which this component is created
+// name - master_monitor_proxy
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function master_monitor_proxy::new(string name = "master_monitor_proxy",
                                  uvm_component parent = null);
@@ -55,7 +55,7 @@ endfunction : new
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void master_monitor_proxy::build_phase(uvm_phase phase);
   super.build_phase(phase);

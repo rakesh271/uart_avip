@@ -8,6 +8,6 @@
 interface uart_if;
 
 
-endinterface: uart_if 
+endinterface : uart_if 
 
 `endif

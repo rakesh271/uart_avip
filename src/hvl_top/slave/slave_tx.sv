@@ -3,7 +3,7 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: slave_tx
-// It's a transaction class that holds the SPI data items for generating the stimulus
+// It's a transaction class that holds the UART data items for generating the stimulus
 //--------------------------------------------------------------------------------------------
 class slave_tx extends uvm_sequence_item;
   //register with factory so we can override with uvm method in future if necessary.
@@ -33,7 +33,7 @@ endclass : slave_tx
 //  
 //
 // Parameters:
-//  name - slave_tx
+// name - slave_tx
 //--------------------------------------------------------------------------------------------
 function slave_tx::new(string name = "slave_tx");
   super.new(name);

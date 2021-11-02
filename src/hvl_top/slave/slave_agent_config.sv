@@ -7,7 +7,7 @@
 //--------------------------------------------------------------------------------------------
 class slave_agent_config extends uvm_object;
   `uvm_object_utils(slave_agent_config)
-
+  
   // Variable: is_active
   // Used for creating the agent in either passive or active mode
   uvm_active_passive_enum is_active=UVM_ACTIVE;  
@@ -24,13 +24,12 @@ endclass : slave_agent_config
 // Construct: new
 //
 // Parameters:
-//  name - slave_agent_config
-//  parent - parent under which this component is created
+// name - slave_agent_config
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function slave_agent_config::new(string name = "slave_agent_config");
   super.new(name);
 endfunction : new
-
 
 `endif
 

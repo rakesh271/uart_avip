@@ -15,4 +15,4 @@ interface master_monitor_bfm(uart_if intf);
     $display("Master Monitor BFM");
   end
 
-endinterface
+endinterface : master_monitor_bfm

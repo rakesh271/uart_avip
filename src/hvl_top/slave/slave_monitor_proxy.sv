@@ -16,7 +16,7 @@ class slave_monitor_proxy extends uvm_monitor;
   //Declaring Virtual Monitor BFM Handle
   virtual slave_monitor_bfm slave_mon_bfm_h;
 
-  // Variable: sa_cfg_h;
+  // Variable: slave_agent_cfg_h;
   // Handle for slave agent configuration
   slave_agent_config slave_agent_cfg_h;
 
@@ -36,8 +36,8 @@ endclass : slave_monitor_proxy
 // Construct: new
 //
 // Parameters:
-//  name - slave_monitor_proxy
-//  parent - parent under which this component is created
+// name - slave_monitor_proxy
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function slave_monitor_proxy::new(string name = "slave_monitor_proxy",
                                  uvm_component parent = null);
@@ -47,16 +47,16 @@ endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// <Description_here>
+// Description_here:
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_monitor_proxy::build_phase(uvm_phase phase);
   super.build_phase(phase);
-
+  
   if(!uvm_config_db#(virtual slave_monitor_bfm)::get(this,"","slave_monitor_bfm",slave_mon_bfm_h)) begin
-     `uvm_fatal("FATAL_SMP_MON_BFM",$sformatf("Couldn't get S_MON_BFM in Slave_Monitor_proxy"));  
+    `uvm_fatal("FATAL_SMP_MON_BFM",$sformatf("Couldn't get S_MON_BFM in Slave_Monitor_proxy"));  
   end 
 
 endfunction : build_phase
@@ -66,7 +66,7 @@ endfunction : build_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_monitor_proxy::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
@@ -77,7 +77,7 @@ endfunction : connect_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_monitor_proxy::end_of_elaboration_phase(uvm_phase phase);
   super.end_of_elaboration_phase(phase);
@@ -88,7 +88,7 @@ endfunction  : end_of_elaboration_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_monitor_proxy::start_of_simulation_phase(uvm_phase phase);
   super.start_of_simulation_phase(phase);
@@ -99,7 +99,7 @@ endfunction : start_of_simulation_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task slave_monitor_proxy::run_phase(uvm_phase phase);
 
