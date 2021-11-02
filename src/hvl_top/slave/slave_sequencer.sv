@@ -29,8 +29,8 @@ endclass : slave_sequencer
 // slave_sequencer class object is initialized
 //
 // Parameters:
-//  name - slave_sequencer
-//  parent - parent under which this component is created
+// name - slave_sequencer
+// parent - parent under which this component is created
 //--------------------------------------------------------------------------------------------
 function slave_sequencer::new(string name = "slave_sequencer", uvm_component parent = null);
   super.new(name, parent);
@@ -41,7 +41,7 @@ endfunction : new
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_sequencer::build_phase(uvm_phase phase);
   super.build_phase(phase);
@@ -52,7 +52,7 @@ endfunction : build_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_sequencer::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
@@ -63,7 +63,7 @@ endfunction : connect_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_sequencer::end_of_elaboration_phase(uvm_phase phase);
   super.end_of_elaboration_phase(phase);
@@ -74,7 +74,7 @@ endfunction  : end_of_elaboration_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void slave_sequencer::start_of_simulation_phase(uvm_phase phase);
   super.start_of_simulation_phase(phase);
@@ -85,7 +85,7 @@ endfunction : start_of_simulation_phase
 // <Description_here>
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 task slave_sequencer::run_phase(uvm_phase phase);
 

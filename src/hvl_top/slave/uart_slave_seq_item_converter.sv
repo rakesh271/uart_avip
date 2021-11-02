@@ -19,7 +19,7 @@ endclass : uart_slave_seq_item_converter
 // Construct: new
 //
 // Parameters:
-//  name - uart_slave_seq_item_converter
+// name - uart_slave_seq_item_converter
 //--------------------------------------------------------------------------------------------
 function uart_slave_seq_item_converter::new(string name = "uart_slave_seq_item_converter");
   super.new(name);
