@@ -24,6 +24,7 @@ package uart_master_pkg;
   `include "master_sequencer.sv"
   `include "master_driver_proxy.sv"
   `include "master_monitor_proxy.sv"
+  `include "master_coverage.sv"
   `include "master_agent.sv"
   
 endpackage : uart_master_pkg

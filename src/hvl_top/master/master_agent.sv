@@ -25,6 +25,10 @@ class master_agent extends uvm_agent;
   // Declaring a handle for master monitor proxy
   master_monitor_proxy master_mon_proxy_h;
 
+  // Variable: master_coverage
+  // Decalring a handle for master_coverage
+  master_coverage master_cov_h;
+
   //coverage handle
   
   //-------------------------------------------------------
@@ -70,6 +74,15 @@ function void master_agent::build_phase(uvm_phase phase);
   end
 
   master_mon_proxy_h=master_monitor_proxy::type_id::create("master_monitor_proxy",this);
+
+  if(master_agent_cfg_h.has_coverage) begin
+    master_cov_h = master_coverage::type_id::create("master_cov_h",this);
+  end
+
+  if(master_agent_cfg_h.has_coverage) begin
+    master_cov_h.master_agent_cfg_h = master_agent_cfg_h;
+    // connect monitor port to coverage
+  end
 
 endfunction : build_phase
 

@@ -10,8 +10,11 @@ class slave_agent_config extends uvm_object;
   
   // Variable: is_active
   // Used for creating the agent in either passive or active mode
-  uvm_active_passive_enum is_active=UVM_ACTIVE;  
+  uvm_active_passive_enum is_active=UVM_ACTIVE;
 
+  // Variable: has_coverage
+  // Used for enabling the slave agent coverage
+  bit has_coverage;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
