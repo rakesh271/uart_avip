@@ -10,7 +10,8 @@
 // Parameters:
 //  intf - UART Interface
 //--------------------------------------------------------------------------------------------
-interface slave_driver_bfm(uart_if drv_intf, uart_if.MON_MP mon_intf);
+//interface slave_driver_bfm(uart_if drv_intf, uart_if.MON_MP mon_intf);
+interface slave_driver_bfm(uart_if intf);
 
   //-------------------------------------------------------
   // Creating the handle for proxy driver

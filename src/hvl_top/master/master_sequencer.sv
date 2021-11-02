@@ -10,6 +10,10 @@
 
   `uvm_component_utils(master_sequencer)
 
+  // Variable: master_agent_cfg_h
+  // Declaring handle for master agent config class 
+  master_agent_config master_agent_cfg_h;
+
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------

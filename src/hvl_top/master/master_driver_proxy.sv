@@ -9,8 +9,14 @@
 //uvm_driver is a parameterized class and it is parameterized with the type of the request 
 //sequence_item and the type of the response sequence_item 
 //--------------------------------------------------------------------------------------------
-class master_driver_proxy extends uvm_driver;
+class master_driver_proxy extends uvm_driver#(master_tx);
   `uvm_component_utils(master_driver_proxy)
+  
+  virtual master_driver_bfm master_drv_bfm_h;
+  
+  // Variable: master_agent_cfg_h
+  // Declaring handle for master agent config class 
+  master_agent_config master_agent_cfg_h;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -37,14 +43,14 @@ endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// <Description_here>
-//
 // Parameters:
 //  phase - uvm phase
 //--------------------------------------------------------------------------------------------
-function void master_driver_proxy::build_phase(uvm_phase phase);
-  
+function void master_driver_proxy::build_phase(uvm_phase phase);  
   super.build_phase(phase);
+    if(!uvm_config_db #(virtual master_driver_bfm)::get(this,"","master_driver_bfm",master_drv_bfm_h)) begin
+    `uvm_fatal("FATAL_MDP_CANNOT_GET_MASTER_DRIVER_BFM","cannot get() master_drv_bfm_h");
+  end
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -89,14 +95,12 @@ endfunction : start_of_simulation_phase
 //--------------------------------------------------------------------------------------------
 task master_driver_proxy::run_phase(uvm_phase phase);
 
-  phase.raise_objection(this, "master_driver_proxy");
-
   super.run_phase(phase);
 
+  seq_item_port.get_next_item(req);
   // Work here
   // ...
-
-  phase.drop_objection(this);
+  seq_item_port.item_done();
 
 endtask : run_phase
 

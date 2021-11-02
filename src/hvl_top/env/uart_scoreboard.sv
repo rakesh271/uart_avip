@@ -7,6 +7,26 @@
 //--------------------------------------------------------------------------------------------
 class uart_scoreboard extends uvm_scoreboard;
   `uvm_component_utils(uart_scoreboard)
+
+  //Variable : master_tx_h
+  //declaring master transaction handle
+  master_tx master_tx_h;
+  
+  //Variable : slave_tx_h
+  //declaring slave transaction handle
+  slave_tx slave_tx_h;
+  
+  //Variable : env_cfg_h
+  //declaring env config handle
+  env_config env_cfg_h;
+
+  //Variable : master_analysis_fifo
+  //declaring analysis fifo
+  uvm_tlm_analysis_fifo#(master_tx)master_analysis_fifo;
+ 
+  //Variable : slave_analysis_fifo
+  //declaring analysis fifo
+  uvm_tlm_analysis_fifo#(slave_tx)slave_analysis_fifo;
   
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -37,6 +57,10 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void uart_scoreboard::build_phase(uvm_phase phase);
   super.build_phase(phase);
+  
+  master_analysis_fifo = new("master_analysis_fifo",this);
+  slave_analysis_fifo = new("slave_analysis_fifo",this);
+  
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------

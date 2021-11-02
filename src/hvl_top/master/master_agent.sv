@@ -3,17 +3,30 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: master_agent
-// <Description_here>
-//--------------------------------------------------------------------------------------------
+// This agent is a configurable with respect to configuration which can create active and passive components
+// It contains testbench components like sequencer,driver_proxy and monitor_proxy for UART
+// --------------------------------------------------------------------------------------------
 class master_agent extends uvm_agent;
   `uvm_component_utils(master_agent)
 
-  // Variable: m_cfg
+  // Variable: master_agent_cfg_h
   // Declaring handle for master agent config class 
   master_agent_config master_agent_cfg_h;
+
+  // Varible: master_seqr_h 
+  // Handle for slave seuencer
   master_sequencer master_seqr_h;
+  
+  // Variable: master_drv_proxy_h
+  // Creating a Handle formaster driver proxy
   master_driver_proxy master_drv_proxy_h;
+  
+  // Variable: master_mon_proxy_h
+  // Declaring a handle for master monitor proxy
   master_monitor_proxy master_mon_proxy_h;
+
+  //coverage handle
+  
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -41,9 +54,8 @@ function void master_agent::build_phase(uvm_phase phase);
   super.build_phase(phase);
 
   if(!uvm_config_db #(master_agent_config)::get(this,"","master_agent_config",master_agent_cfg_h)) begin
-    `uvm_fatal("FATAL_MDP_MASTER_CFG_NOT_FOUND_CONFIG_DB","cannot get master_agent_cfg_h from uvm_config");
+    `uvm_fatal("FATAL_MA_CANNOT_GET_MASTER_AGENT_CONFIG","cannot get master_agent_cfg_h from uvm_config_db");
   end
-
 
   if(master_agent_cfg_h.is_active == UVM_ACTIVE) begin
     master_drv_proxy_h=master_driver_proxy::type_id::create("master_driver_proxy",this);
@@ -51,6 +63,7 @@ function void master_agent::build_phase(uvm_phase phase);
   end
 
   master_mon_proxy_h=master_monitor_proxy::type_id::create("master_monitor_proxy",this);
+
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -62,7 +75,16 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void master_agent::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
+  if(master_agent_cfg_h.is_active == UVM_ACTIVE) begin
+    master_drv_proxy_h.master_agent_cfg_h = master_agent_cfg_h;
+    master_seqr_h.master_agent_cfg_h = master_agent_cfg_h;
+
+    //Connecting the ports
+    master_drv_proxy_h.seq_item_port.connect(master_seqr_h.seq_item_export);
+  end
+  
   master_mon_proxy_h.master_agent_cfg_h = master_agent_cfg_h;
+  
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------

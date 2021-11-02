@@ -9,6 +9,10 @@
 class slave_driver_proxy extends uvm_driver#(slave_tx);
   `uvm_component_utils(slave_driver_proxy)
 
+  // Variable: slave_driver_bfm_h;
+  // Handle for slave driver bfm
+  virtual slave_driver_bfm slave_drv_bfm_h;
+
   // Variable: sa_cfg_h;
   // Handle for slave agent configuration
   slave_agent_config slave_agent_cfg_h;
@@ -46,6 +50,9 @@ endfunction : new
 //--------------------------------------------------------------------------------------------
 function void slave_driver_proxy::build_phase(uvm_phase phase);
   super.build_phase(phase);
+  if(!uvm_config_db #(virtual slave_driver_bfm)::get(this,"","slave_driver_bfm",slave_drv_bfm_h)) begin
+    `uvm_fatal("FATAL_SDP_CANNOT_GET_SLAVE_DRIVER_BFM","cannot get() slave_drv_bfm_h");
+  end
 endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
@@ -90,14 +97,12 @@ endfunction : start_of_simulation_phase
 //--------------------------------------------------------------------------------------------
 task slave_driver_proxy::run_phase(uvm_phase phase);
 
-  phase.raise_objection(this, "slave_driver_proxy");
-
   super.run_phase(phase);
 
+  seq_item_port.get_next_item(req);
   // Work here
   // ...
-
-  phase.drop_objection(this);
+  seq_item_port.item_done();
 
 endtask : run_phase
 

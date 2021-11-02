@@ -27,9 +27,14 @@ module hdl_top;
   end
 
   //-------------------------------------------------------
-  // SPI Interface Instantiation
+  // UART Interface Instantiation
   //-------------------------------------------------------
   uart_if intf();
+
+  //-------------------------------------------------------
+  // UART BFM Agent Instantiation
+  //-------------------------------------------------------
+  master_agent_bfm master_agent_bfm_h(intf);
 
   //-------------------------------------------------------
   // SPI BFM Agent Instantiation
