@@ -62,7 +62,8 @@ function void env::build_phase(uvm_phase phase);
   
   `uvm_info(get_full_name(),"ENV: build_phase",UVM_LOW);
   if(!uvm_config_db #(env_config)::get(this,"","env_config",env_cfg_h)) begin
-    `uvm_fatal("FATAL_SA_AGENT_CONFIG", $sformatf("Couldn't get the slave_agent_config from config_db"))
+    `uvm_fatal("FATAL_SA_AGENT_CONFIG", 
+                $sformatf("Couldn't get the slave_agent_config from config_db"))
   end
   master_agent_h=master_agent::type_id::create("master_agent_h",this);
   slave_agent_h = slave_agent::type_id::create("slave_agent_h",this);

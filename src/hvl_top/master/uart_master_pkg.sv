@@ -26,6 +26,7 @@ package uart_master_pkg;
   `include "master_monitor_proxy.sv"
   `include "master_coverage.sv"
   `include "master_agent.sv"
+ // `include "uart_master_coverage.sv"
   
 endpackage : uart_master_pkg
 
