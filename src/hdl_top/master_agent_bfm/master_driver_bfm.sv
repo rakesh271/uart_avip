@@ -23,4 +23,5 @@ initial
     $display("Master driver BFM");
   end
 
-endinterface
+endinterface : master_driver_bfm
+
