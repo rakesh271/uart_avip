@@ -14,7 +14,7 @@ class env_config extends uvm_object;
 
   // Variable: has_virtual_sqr
   // Enables the virtual sequencer. Default value is 1
-  bit has_virtual_sqr = 1;
+  bit has_virtual_seqr = 1;
 
 
   // Variable: ma_cfg_h

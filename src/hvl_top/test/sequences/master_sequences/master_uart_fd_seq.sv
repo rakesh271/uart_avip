@@ -38,7 +38,12 @@ endfunction : new
 //-------------------------------------------------------
 
 task master_uart_fd_seq::body();
-
+  
+  req=master_tx::type_id::create("req");
+  start_item(req);
+  //
+  //
+  finish_item(req);
 endtask : body
 
 `endif

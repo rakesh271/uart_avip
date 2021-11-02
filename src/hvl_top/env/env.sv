@@ -13,18 +13,21 @@ class env extends uvm_env;
   //-------------------------------------------------------
   `uvm_component_utils(env)
   
+  //declaring handle for env_config
   env_config env_cfg_h;
-  //-------------------------------------------------------
+
   // declaring master handles
-  //-------------------------------------------------------
   master_agent master_agent_h;
   
-  //-------------------------------------------------------
   // Declaring slave handles
-  //-------------------------------------------------------
   slave_agent slave_agent_h;
- 
+
+  //handle for virtual seqr
   virtual_sequencer virtual_seqr_h;
+
+  //handle for scoreboard 
+  uart_scoreboard scoreboard_h;
+
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -68,10 +71,13 @@ function void env::build_phase(uvm_phase phase);
   master_agent_h=master_agent::type_id::create("master_agent_h",this);
   slave_agent_h = slave_agent::type_id::create("slave_agent_h",this);
 
-  if(env_cfg_h.has_virtual_sqr) begin
+  if(env_cfg_h.has_virtual_seqr) begin
     virtual_seqr_h = virtual_sequencer::type_id::create("virtual_seqr_h",this);
   end
 
+  if(env_cfg_h.has_scoreboard) begin
+    scoreboard_h = uart_scoreboard::type_id::create("scoreboard_h",this);
+  end
 
 endfunction : build_phase
 
@@ -85,6 +91,15 @@ endfunction : build_phase
 //--------------------------------------------------------------------------------------------
 function void env::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
+  if(env_cfg_h.has_virtual_seqr) begin
+    virtual_seqr_h.master_seqr_h = master_agent_h.master_seqr_h;
+    virtual_seqr_h.slave_seqr_h = slave_agent_h.slave_seqr_h;
+  end
+  
+  //connecting analysis port to analysis fifo
+  slave_agent_h.slave_mon_proxy_h.slave_analysis_port.connect(scoreboard_h.slave_analysis_fifo.analysis_export);
+  master_agent_h.master_mon_proxy_h.master_analysis_port.connect(scoreboard_h.master_analysis_fifo.analysis_export);
+
 endfunction : connect_phase
 
 //--------------------------------------------------------------------------------------------

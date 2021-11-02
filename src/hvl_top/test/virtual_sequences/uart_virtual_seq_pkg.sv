@@ -14,6 +14,8 @@ package uart_virtual_seq_pkg;
   import uvm_pkg::*;
   import uart_master_pkg::*;
   import uart_slave_pkg::*;
+  import master_uart_seq_pkg::*;
+  import slave_uart_seq_pkg::*;
   import uart_env_pkg::*;
 
 

@@ -24,7 +24,7 @@ class base_test extends uvm_test;
   extern virtual function void build_phase(uvm_phase phase);
   extern virtual function void setup_env_cfg();
   extern virtual function void setup_master_agent_cfg();
-  extern virtual function void setup_slave_agents_cfg();
+  extern virtual function void setup_slave_agent_cfg();
   extern virtual function void end_of_elaboration_phase(uvm_phase phase);
 
 endclass : base_test
@@ -69,13 +69,13 @@ function void base_test:: setup_env_cfg();
   env_cfg_h = env_config::type_id::create("env_cfg_h");
  
   env_cfg_h.has_scoreboard = 1;
-  env_cfg_h.has_virtual_sqr = 1;
+  env_cfg_h.has_virtual_seqr = 1;
   
   // Setup the master agent cfg 
   setup_master_agent_cfg();
 
-  // Setup the slave agent(s) cfg 
-  setup_slave_agents_cfg();
+  // Setup the slave agent cfg 
+  setup_slave_agent_cfg();
 
   uvm_config_db #(env_config)::set(this,"*","env_config",env_cfg_h);
 
@@ -93,7 +93,8 @@ function void base_test::setup_master_agent_cfg();
   // Configure the Master agent configuration
   env_cfg_h.master_agent_cfg_h.is_active            = uvm_active_passive_enum'(UVM_ACTIVE);
 
-  uvm_config_db #(master_agent_config)::set(this,"*master_agent*","master_agent_config",env_cfg_h.master_agent_cfg_h);
+  uvm_config_db #(master_agent_config)::set(this,"*master_agent*","master_agent_config",
+                                                          env_cfg_h.master_agent_cfg_h);
 
 endfunction: setup_master_agent_cfg
 
@@ -102,7 +103,7 @@ endfunction: setup_master_agent_cfg
 // Setup the slave agent(s) configuration with the required values
 // and store the handle into the config_db
 //--------------------------------------------------------------------------------------------
-function void base_test::setup_slave_agents_cfg();
+function void base_test::setup_slave_agent_cfg();
 
     env_cfg_h.slave_agent_cfg_h = slave_agent_config::type_id::create("slave_agent_cfg_h",this);
 
@@ -111,7 +112,7 @@ function void base_test::setup_slave_agents_cfg();
     uvm_config_db #(slave_agent_config)::set(this,("*slave_agent_h*"),
                                              "slave_agent_config", env_cfg_h.slave_agent_cfg_h);
 
-endfunction: setup_slave_agents_cfg
+endfunction: setup_slave_agent_cfg
 
 //--------------------------------------------------------------------------------------------
 // Function: end_of_elaboration_phase

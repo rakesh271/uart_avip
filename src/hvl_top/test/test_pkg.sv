@@ -22,9 +22,9 @@ package test_pkg;
   import uart_master_pkg::*;
   import uart_slave_pkg::*;
   import uart_env_pkg::*;
-  
-  `include "uart_virtual_seq_base.sv"
-  `include "uart_virtual_seqs.sv"
+  import master_uart_seq_pkg::*;
+  import slave_uart_seq_pkg::*;
+  import uart_virtual_seq_pkg::*;
   
   `include "base_test.sv"
 

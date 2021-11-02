@@ -38,7 +38,11 @@ endfunction : new
 //-------------------------------------------------------
 
 task slave_uart_fd_seq::body();
-
+  req=slave_tx::type_id::create("req");
+  start_item(req);
+  //
+  //
+  finish_item(req);
 endtask : body
 
 `endif

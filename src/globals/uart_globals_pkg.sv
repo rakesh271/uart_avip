@@ -7,7 +7,7 @@
 //--------------------------------------------------------------------------------------------
 package uart_globals_pkg;
 
-
+parameter CHAR_LENGTH = 8;
 
 endpackage: uart_globals_pkg
 
