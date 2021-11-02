@@ -24,6 +24,7 @@ package uart_master_pkg;
   `include "master_driver_proxy.sv"
   `include "master_monitor_proxy.sv"
   `include "master_agent.sv"
+  `include "uart_master_coverage.sv"
   
 endpackage : uart_master_pkg
 
