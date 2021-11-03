@@ -24,6 +24,10 @@ class slave_agent extends uvm_agent;
   // Handle for slave monitor proxy
   slave_monitor_proxy slave_mon_proxy_h;
 
+  // Variable: slave_coverage
+  // Decalring a handle for slave_coverage
+  slave_coverage slave_cov_h;
+
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
   //-------------------------------------------------------
@@ -66,7 +70,11 @@ function void slave_agent::build_phase(uvm_phase phase);
     slave_seqr_h=slave_sequencer::type_id::create("slave_seqr_h",this);
   end
   slave_mon_proxy_h = slave_monitor_proxy::type_id::create("slave_mon_proxy_h",this);
+  
   //coverage
+  if(slave_agent_cfg_h.has_coverage) begin
+    slave_cov_h = slave_coverage::type_id::create("slave_cov_h",this);
+  end
 
 endfunction : build_phase
 
@@ -93,6 +101,8 @@ function void slave_agent::connect_phase(uvm_phase phase);
   slave_mon_proxy_h.slave_agent_cfg_h = slave_agent_cfg_h;
   
   //slave_drv_proxy_h.seq_item_port.connect(slave_seqr_h.seq_item_export);
+  //
+  //coverage connections
 
 endfunction : connect_phase
 
