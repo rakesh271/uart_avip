@@ -26,7 +26,7 @@ package uart_slave_pkg;
   `include "slave_driver_proxy.sv"
   `include "slave_monitor_proxy.sv"
   `include "slave_agent.sv"
-  `include "uart_slave_coverage.sv"
+ // `include "uart_slave_coverage.sv"
   
 endpackage : uart_slave_pkg
 
