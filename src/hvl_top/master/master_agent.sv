@@ -39,16 +39,23 @@ class master_agent extends uvm_agent;
 
 endclass : master_agent
 
+//--------------------------------------------------------------------------------------------
+// Construct: new
+//
+// Parameters: 
+// name - instance name of the uart master_agent
+// parent - parent under which this component is created
+//--------------------------------------------------------------------------------------------
 function  master_agent::new(string name="master_agent",uvm_component parent = null);
   super.new(name,parent);
 endfunction : new
 
 //--------------------------------------------------------------------------------------------
 // Function: build_phase
-// <Description_here>
+// creates the required ports,gets the required configuration from config_db
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void master_agent::build_phase(uvm_phase phase);
   super.build_phase(phase);
@@ -68,13 +75,14 @@ endfunction : build_phase
 
 //--------------------------------------------------------------------------------------------
 // Function: connect_phase
-// <Description_here>
+// Connecting master_driver, master_monitor and master_sequencer for configuration
 //
 // Parameters:
-//  phase - uvm phase
+// phase - uvm phase
 //--------------------------------------------------------------------------------------------
 function void master_agent::connect_phase(uvm_phase phase);
   super.connect_phase(phase);
+  
   if(master_agent_cfg_h.is_active == UVM_ACTIVE) begin
     master_drv_proxy_h.master_agent_cfg_h = master_agent_cfg_h;
     master_seqr_h.master_agent_cfg_h = master_agent_cfg_h;
