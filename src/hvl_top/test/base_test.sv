@@ -3,19 +3,20 @@
 
 //--------------------------------------------------------------------------------------------
 // Class: base_test
-//  Base test has the test scenarios for testbench which has the env, config, etc.
-//  Sequences are created and started in the test
+// Base test has the test scenarios for testbench which has the env, config, etc.
+// Sequences are created and started in the test
 //--------------------------------------------------------------------------------------------
 class base_test extends uvm_test;
+  
   `uvm_component_utils(base_test)
 
-   // Variable: e_cfg_h
-   // Declaring environment config handle
-   env_config env_cfg_h;
+  // Variable: e_cfg_h
+  // Declaring environment config handle
+  env_config env_cfg_h;
 
-   // Variable: env_h
-   // Handle for environment 
-   env env_h;
+  // Variable: env_h
+  // Handle for environment 
+  env env_h;
 
   //-------------------------------------------------------
   // Externally defined Tasks and Functions
@@ -91,7 +92,7 @@ function void base_test::setup_master_agent_cfg();
   env_cfg_h.master_agent_cfg_h = master_agent_config::type_id::create("master_agent_cfg_h");
 
   // Configure the Master agent configuration
-  env_cfg_h.master_agent_cfg_h.is_active            = uvm_active_passive_enum'(UVM_ACTIVE);
+  env_cfg_h.master_agent_cfg_h.is_active = uvm_active_passive_enum'(UVM_ACTIVE);
 
   uvm_config_db #(master_agent_config)::set(this,"*master_agent*","master_agent_config",
                                                           env_cfg_h.master_agent_cfg_h);
@@ -107,7 +108,7 @@ function void base_test::setup_slave_agent_cfg();
 
     env_cfg_h.slave_agent_cfg_h = slave_agent_config::type_id::create("slave_agent_cfg_h",this);
 
-    env_cfg_h.slave_agent_cfg_h.is_active    = uvm_active_passive_enum'(UVM_ACTIVE);
+    env_cfg_h.slave_agent_cfg_h.is_active = uvm_active_passive_enum'(UVM_ACTIVE);
 
     uvm_config_db #(slave_agent_config)::set(this,("*slave_agent_h*"),
                                              "slave_agent_config", env_cfg_h.slave_agent_cfg_h);

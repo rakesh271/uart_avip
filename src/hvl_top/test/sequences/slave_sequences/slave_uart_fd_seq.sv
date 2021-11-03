@@ -3,7 +3,7 @@
 
 
 //--------------------------------------------------------------------------------------------
-// Class: seq extended from base class
+// Class: seq extended from base seq class
 //--------------------------------------------------------------------------------------------
 
 class slave_uart_fd_seq extends slave_base_sequence;
@@ -34,15 +34,17 @@ endfunction : new
 
 //-------------------------------------------------------
 // task:body
-//  To create request which is comes from driver
+// based on the request from driver task will drive the transaction
 //-------------------------------------------------------
 
 task slave_uart_fd_seq::body();
   req=slave_tx::type_id::create("req");
+begin
   start_item(req);
-  //
-  //
+  // ...
+  // randomize the signals here
   finish_item(req);
+end
 endtask : body
 
 `endif

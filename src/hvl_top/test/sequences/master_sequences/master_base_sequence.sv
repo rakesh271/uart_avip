@@ -2,7 +2,7 @@
 `define MASTER_BASE_SEQUENCE_INCLUDED_
 //--------------------------------------------------------------------------------------------
 // Class: master_base_sequence
-// <Description_here>
+// Creating master_base_seq extends from uvm_sequence 
 //--------------------------------------------------------------------------------------------
 class master_base_sequence extends uvm_sequence #(master_tx);
   //register with factory so we can ovverride using uvm methods in future.
