@@ -1,3 +1,6 @@
+`ifndef UART_MASTER_AGENT_BFM_INCLUDED_
+`define UART_MASTER_AGENT_BFM_INCLUDED_
+ 
 //--------------------------------------------------------------------------------------------
 // Module: Master Agent BFM
 // This module is used as the configuration class for master agent bfm and its components
@@ -21,4 +24,6 @@
      uvm_config_db#(virtual master_monitor_bfm)::set(null,"*", "master_monitor_bfm", master_mon_bfm_h);
    end
 
-  endmodule
+  endmodule : master_agent_bfm
+
+`endif
